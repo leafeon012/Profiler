@@ -1,0 +1,111 @@
+@font-face {
+  font-family: "ONE-Mobile-POP";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  height: 95vh;
+  font-family: "ONE-Mobile-POP";
+  font-style: normal;
+  font-weight: normal;
+}
+.font_patching {
+  font-family: "ONE-Mobile-POP";
+  font-style: normal;
+  font-weight: normal;
+}
+
+:root {
+  /*color palette*/
+  --p-white: #ffffff;
+  --white-col: 252, 252, 252;
+  --white: rgb(var(--white-col));
+  --black-col: 37, 37, 37;
+  --black: rgb(var(--black-col));
+  --d-grey: #737373;
+  --dark-m-grey: #b6b6b6;
+  --m-grey: #c4c4c4;
+  --l-grey: #e6e6e6;
+  --xl-grey-col: 242, 242, 242; /*#F2F2F2*/
+  --xl-grey: rgb(var(--xl-grey-col));
+  --orange: #c65306;
+  --blue: #0865c3;
+  --l-blue: #4297ff;
+  --xl-blue: #aad0f5;
+  --red: #f01346;
+  --green: #15b76c;
+  --purple: #6446e6;
+  --yellow: #ff9e01;
+
+  /*main theme variables*/
+  --text: var(--black);
+  --text-secondary: var(--d-grey);
+  --primary: var(--blue);
+  --secondary: var();
+  --active: var(--l-blue);
+  --inactive: var(--xl-blue);
+  --app-accent: var(--primary);
+
+  /*backgrounds*/
+  --background: var(--xl-grey);
+  --control-background: var(--l-grey);
+  --textual-background: var(--white);
+  --surface-background: var(--white);
+  --alt-surface-background: var(--d-grey);
+  --frosted-opacity: 0.8;
+  --frosted-blur-size: 0.5rem;
+  --frosted-background-color: rgba(var(--xl-grey-col), var(--frosted-opacity));
+
+  /*accents*/
+  --error: var(--red);
+  --confirmation: var(--green);
+  --accent-badge: var(--orange);
+
+  /*on top colors*/
+  --on-primary: var(--p-white);
+  --on-secondary: var();
+  --on-active: var(--p-white);
+  --on-background: var(--black);
+  --on-alt-background: var(--p-white);
+  --on-surface: var(--black);
+  --on-error: var(--white);
+  --on-confirmation: var(--white);
+  --on-accent-badge: var(--p-white);
+
+  /*borders*/
+  --border-surface: var(--l-grey);
+  --border-alt-surface: var(--l-grey);
+  --border-control: var(--d-grey);
+
+  /*misc*/
+  --shadow-color: rgba(var(--black-col), 0.3);
+}
+
+body {
+  background-color: #f1f1f1;
+}
+h2 {
+  color: #2c3e50;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.border {
+  background-color: white;
+  padding: 20px 10px;
+  border-radius: 8px;
+  font: 1px solid #eaeaea;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.showchat {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  font: 1px solid #eaeaea;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.chart-buttons {
+  margin-top: 30px;
+  padding: 0%;
+}

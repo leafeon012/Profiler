@@ -26,6 +26,8 @@ app.get("/", (req, res) => {
   res.send(`
   <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/samsunginternet/OneUI-Web/oui-css/oui.css">
+>
+
     <style>
     body,
     ol,
@@ -51,8 +53,59 @@ app.get("/", (req, res) => {
         margin: 0;
         padding: 0;
     }
+    h1 {
+      height: 100px;
+    }
+    
+    h1 span {
+      position: relative;
+      top: 20px;
+      display: inline-block;
+      animation: bounce .3s ease infinite alternate;
+  
+      font-size: 80px;
+      color: #FFF;
+      text-shadow: 0 1px 0 #CCC,
+                   0 2px 0 #CCC,
+                   0 3px 0 #CCC,
+                   0 4px 0 #CCC,
+                   0 5px 0 #CCC,
+                   0 6px 0 transparent,
+                   0 7px 0 transparent,
+                   0 8px 0 transparent,
+                   0 9px 0 transparent,
+                   0 10px 10px rgba(0, 0, 0, .4);
+    }
+    
+    
+    h1 span:nth-child(2) { animation-delay: .1s; }
+    h1 span:nth-child(3) { animation-delay: .2s; }
+    h1 span:nth-child(4) { animation-delay: .3s; }
+    h1 span:nth-child(5) { animation-delay: .4s; }
+    h1 span:nth-child(6) { animation-delay: .5s; }
+    h1 span:nth-child(7) { animation-delay: .6s; }
+    h1 span:nth-child(8) { animation-delay: .7s; }
+    
+    @keyframes bounce {
+      100% {
+        top: -20px;
+        text-shadow: 0 1px 0 #CCC,
+                     0 2px 0 #CCC,
+                     0 3px 0 #CCC,
+                     0 4px 0 #CCC,
+                     0 5px 0 #CCC,
+                     0 6px 0 #CCC,
+                     0 7px 0 #CCC,
+                     0 8px 0 #CCC,
+                     0 9px 0 #CCC,
+                     0 50px 25px rgba(0, 0, 0, .2);
+      }
+    }
     
     body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -66,7 +119,23 @@ app.get("/", (req, res) => {
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.03);
     }
-    
+  html{
+    width: 100%;  
+    height: 100%;
+
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+    .snow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: linear-gradient(transparent,rgba(#000, 0.5)),
+        linear-gradient(to right,#224,#336,#224);
+    }
     .container {
         -webkit-transition: all 600ms cubic-bezier(0.81,-0.12, 0.64, 0.99);
         transition: all 600ms cubic-bezier(0.81,-0.12, 0.64, 0.99);
@@ -327,9 +396,36 @@ app.get("/", (req, res) => {
         /*misc*/
         --shadow-color: rgba(var(--black-col), 0.3);
      }
+     h1 {
+      position: fixed;
+      margin-top: 101px;
+      margin-left: 90px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+   }
+
     </style>
   </head>
   <body>
+    <h1>
+      <span>n</span>
+      <span>o</span>
+      <span>d</span>
+      <span>e</span>
+      <span>.</span>
+      <span>j</span>
+      <span>s</span>
+      <span>!</span>
+    </h1>
+
+
+  <canvas id="canvas" class="snow"></canvas>
   <div class="container">
   <div class="main-box" style="width:520px">
     <div class="box-content">
@@ -356,12 +452,92 @@ app.get("/", (req, res) => {
   </div>
 
 </div>
-
-
-
-    
-
   </body>
+  <script>
+  //IIFE
+(function () {
+   'use strict';
+   
+   var canvas,ctx;
+   var points = [];
+   var maxDist = 100;
+
+   function init () {
+      //Add on load scripts
+      canvas = document.getElementById("canvas");
+      ctx = canvas.getContext("2d");
+      resizeCanvas();
+      generatePoints(700);
+      pointFun();
+      setInterval(pointFun,25);
+      window.addEventListener('resize', resizeCanvas, false);
+   }
+   //Particle constructor
+   function point () {
+      this.x = Math.random()*(canvas.width+maxDist)-(maxDist/2);
+      this.y = Math.random()*(canvas.height+maxDist)-(maxDist/2);
+      this.z = (Math.random()*0.5)+0.5;
+      this.vx = ((Math.random()*2)-0.5)*this.z;
+      this.vy = ((Math.random()*1.5)+1.5)*this.z;
+      this.fill = "rgba(255,255,255,"+((0.5*Math.random())+0.5)+")";
+      this.dia = ((Math.random()*2.5)+1.5)*this.z;
+      points.push(this);
+   }
+   //Point generator
+   function generatePoints (amount) {
+      var temp;
+      for (var i = 0; i < amount; i++) {
+         temp = new point();
+      };
+      console.log(points);
+   }
+   //Point drawer
+   function draw (obj) {
+      ctx.beginPath();
+      ctx.strokeStyle = "transparent";
+      ctx.fillStyle = obj.fill;
+      ctx.arc(obj.x,obj.y,obj.dia,0,2*Math.PI);
+      ctx.closePath();
+      ctx.stroke();
+      ctx.fill();
+   }
+   //Updates point position values
+   function update (obj) {
+      obj.x += obj.vx;
+      obj.y += obj.vy;
+      if (obj.x > canvas.width+(maxDist/2)) {
+         obj.x = -(maxDist/2);
+      }
+      else if (obj.xpos < -(maxDist/2)) {
+         obj.x = canvas.width+(maxDist/2);
+      }
+      if (obj.y > canvas.height+(maxDist/2)) {
+         obj.y = -(maxDist/2);
+      }
+      else if (obj.y < -(maxDist/2)) {
+         obj.y = canvas.height+(maxDist/2);
+      }
+   }
+   //
+   function pointFun () {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = 0; i < points.length; i++) {
+         draw(points[i]);
+         update(points[i]);
+      };
+   }
+
+   function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      pointFun();
+   }
+
+   //Execute when DOM has loaded
+   document.addEventListener('DOMContentLoaded',init,false);
+})();
+  </script>
+  
   `);
 });
 
