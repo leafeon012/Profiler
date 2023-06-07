@@ -16,7 +16,7 @@ const path = require("path");
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "Mia1020@",
   database: "debug",
 });
 
@@ -107,7 +107,7 @@ app.get("/", (req, res) => {
       padding: 0;
       overflow: hidden;
         display: -webkit-box;
-        display: -ms-flexbox;
+        display: -ms-flex-box;
         display: flex;
         -webkit-box-pack: center;
         -ms-flex-pack: center;
@@ -144,7 +144,7 @@ app.get("/", (req, res) => {
     .main-box {
         cursor: pointer;
         display: -webkit-box;
-        display: -ms-flexbox;
+        display: -ms-flex-box;
         display: flex;
         -webkit-box-pack: start;
         -ms-flex-pack: start;
@@ -166,7 +166,7 @@ app.get("/", (req, res) => {
     .box-content {
         width: 100%;
         display: -webkit-box;
-        display: -ms-flexbox;
+        display: -ms-flex-box;
         display: flex;
         position: relative;
         /* flex-direction: row; */
@@ -454,7 +454,6 @@ app.get("/", (req, res) => {
 </div>
   </body>
   <script>
-  //IIFE
 (function () {
    'use strict';
    
