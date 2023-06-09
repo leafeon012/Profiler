@@ -142,7 +142,7 @@ function toggleChartType(event) {
 
 loadData("data_group", "data_id"); // 초기 데이터 로드
 
-// 7개의 차트 버튼
+// 6개의 차트 버튼
 const chartButtons = document.querySelectorAll(".chart-button");
 chartButtons.forEach((button) => {
     button.addEventListener("click", toggleChartType);
