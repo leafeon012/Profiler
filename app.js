@@ -10,8 +10,8 @@ const path = require("path");
 //const connection = mysql.createConnection({
 //  host: "localhost",
 //  user: "root",
-//  password: "Mia1020@",
-//  database: "debug"
+//  password: "패스워드",
+//  database: "DB명"
 //});
 const connection = mysql.createConnection({
   host: "localhost",
